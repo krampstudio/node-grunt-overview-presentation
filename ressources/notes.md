@@ -1,6 +1,6 @@
 # Presentation notes
 
-## pacakges numbers
+## packages numbers
 
  * python:  29,720 packages / 22 years = 1351 packages per year
  * ruby:      54,385 packages / 18 years =    3022 packages per year
