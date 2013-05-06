@@ -43,6 +43,70 @@
 
 # Content
 
+## Callback model
+
+For noblocking way
+
+	var http = require('http'),
+		fs = require('fs');
+
+	function accessLog(request, callback){
+		var now = new Date().getTime();
+		var log = util.format('%d : [%s on %s] %s\r\n', now, request.method, request.headers.host, request.url);
+		fs.appendFile('/tmp/node-acess.log', log, 'utf8', callback);
+	}
+
+	http.createServer(function processRequest(request, response){
+		accessLog(log, function(err){
+			if(err){
+				res.writeHead(500);
+				return;
+			} 
+			res.writeHead(200, {'Content-Type': 'text/plain'});
+			res.end('Hello Yajug');
+		});
+	}).listen(80);
+
+
+Chrismas tree anti pattern
+
+	var http = require('http'),
+		fs = require('fs'),
+		util = require('util'),
+		os = require('os');
+
+	http.createServer(function processRequest(request, response){	//1
+		var file = os.tmpdir() + '/node-acess.log';
+		var now = new Date().getTime();
+		var log = util.format('%d : [%s on %s] %s\r\n', now, request.method, request.headers.host, request.url);
+				
+		fs.exists(file, function(exists){	//2 
+			if(exists === true){
+				fs.stat(file, function(err, stat){ 	//3
+					if(err || !fs.isFile()){
+						res.writeHead(500);
+						return;
+					} 
+					
+					fs.appendFile(file, log, 'utf8', function(err){ //4
+						if(err){
+							console.error("unable to write to %s : %j", file, err);
+							res.writeHead(500);
+							return;
+						} 
+						console.log("%s writtent to %s", log, file);
+						res.writeHead(200, {'Content-Type': 'text/plain'});
+						res.end('Hello Yajug');
+					});
+				});
+			}
+		});
+	}).listen(80);
+
+
+Future and Promises
+	
+
 ## Middleware pattern
 
 A simplified middleware implementation:
