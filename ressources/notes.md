@@ -7,6 +7,9 @@
  * node.js  26,966 packages / 4 years =   _6742_ packages per year
 
  (sources)[http://caines.ca/blog/programming/the-node-js-community-is-quietly-changing-the-face-of-open-source/]
+ 
+## Best practive guide : http://nodeguide.com
+ 
 
 ## IDEs
 
