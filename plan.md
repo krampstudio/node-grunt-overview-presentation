@@ -7,6 +7,7 @@
      - buzz? 
      - see packages numbers
      - javascript everywhere
+     - JIFSNIF
    2. What's node?
      - The hidden son of Google and Netscape
    3. History
@@ -27,17 +28,20 @@
       - CommonJs
       - Provides only core APIs to manage file system, network, etc. nothing superfluous (Batteries NOT included)
       - Unix based
-    6. APIs
+    6. APIs ?
      - Streams
      - network (http)
      - fs
      - utils
      - process
+     - debug
+     - tests
     7. Patterns
      - Callbacks (trees and promises)
      - Events (EventEmitter)
      - Middleware (connect)
 2. NPM
+3. Good to know (express, connect, meteor, sails, socket.io and ...) 
 3. Grunt
 4. Demo
 
