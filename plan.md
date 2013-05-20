@@ -45,7 +45,7 @@
      - Events (EventEmitter)
      - Middleware (connect)
      - Errors (try, event, domains)
-     - Cluster (LearnBoost/cluster, queue event distribution)
+     - Cluster (LearnBoost/cluster, load balancing (nginx, node-proxy or bouncy), queue event distribution (AMQP, Redis for sockets) )
     9. Community
 2. NPM
     1. Node Package Manager

@@ -24,3 +24,8 @@
 ## Debug
 
  * (node inspector)[https://github.com/dannycoates/node-inspector]
+
+## Scaling
+
+ * http://cjihrig.com/blog/scaling-node-js-applications/
+ * 
