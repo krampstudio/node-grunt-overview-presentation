@@ -2,6 +2,8 @@
 
 # Deck Plan
 
+0. Who am I
+
 1. Node.js
    1. Why I present node?
      - buzz? 
@@ -22,7 +24,7 @@
      - JS becomes popular
     5. Architecture
       - Inspired from: Tornado (python), Twisted (python), Time Machine (ruby), libevent (C), ngixn 
-      - Only one process (no threads, etc.) 
+      - Only one fat process (no threads, etc.) (yes but how to scale?)
       - No blocking I/O: the unique process share the memory and can run something else by waiting the end of the I/O
       - Event driven model (main loop, then event execution sequentially)
       - CommonJs
@@ -30,21 +32,49 @@
       - Unix based
     6. APIs ?
      - Streams
-     - network (http)
+     - network (the complete HTTP1.1 protocol is implempented!)
      - fs
      - utils
      - process
      - debug
      - tests
-    7. Patterns
-     - Callbacks (trees and promises)
+     - HTTP server, but not only cli tools for client side dev and much more
+    7. Short demo presentation
+    8. Patterns
+     - Callbacks (cb trees, futures and promises)
      - Events (EventEmitter)
      - Middleware (connect)
+     - Errors (try, event, domains)
+     - Cluster (LearnBoost/cluster, queue event distribution)
+    9. Community
 2. NPM
-3. Good to know (express, connect, meteor, sails, socket.io and ...) 
-3. Grunt
-4. Demo
-
+    1. Node Package Manager
+     - Unix philosophy: kiss
+     - Embrace CommonJs, everything is a module
+     - package.json
+     - transitive deps node_modules
+     - main registry works on CouchDB: cli and REST API
+     - starts as a side project by @izs but included in node main dist since 0.8?
+3. But
+    - still 0.x -> 1.0 reached when all platforms got the same level of maturity. (ready to prod on linux)
+    - too many modules
+    - need to handle all problems programmatically (clustering, multi proc, etc.)
+    - the error management 
+    - monoculture (try to do node without git...)
+4. Good to know (express, connect, meteor, sails, socket.io and ...) 
+5. Grunt
+    1. Javascript task runner
+     - task based
+     - configuration based
+     - use plugins (1 plugin = 1 task)
+     - easily extensible
+     - wide range of plugins
+     - npm friendly... 
+    2. node-task
+    3. Yeoman 
+     - yo 
+     - bower
+     - grunt
 # Content
 
 ## Callback model
