@@ -18,10 +18,6 @@
      - Gmail -> Chome -> V8
      - Non blocking I/O for scalability
      - JS for simplicity
-    4. Why JS?
-     - Functionnal language : callbacks, event loop and event driven programming feets well the everything must be non blocking approach
-     - Interpreted language : simple to use and to extends
-     - JS becomes popular
     5. Architecture
       - Inspired from: Tornado (python), Twisted (python), Time Machine (ruby), libevent (C), ngixn 
       - Only one fat process (no threads, etc.) (yes but how to scale?)
@@ -30,6 +26,11 @@
       - CommonJs
       - Provides only core APIs to manage file system, network, etc. nothing superfluous (Batteries NOT included)
       - Unix based
+      - libuv
+      - Why JS?
+		 - Functionnal language : callbacks, event loop and event driven programming feets well the everything must be non blocking approach
+		 - Interpreted language : simple to use and to extends
+		 - JS becomes popular
     6. APIs ?
      - Streams
      - network (the complete HTTP1.1 protocol is implempented!)
