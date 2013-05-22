@@ -1,5 +1,4 @@
-
-	var http = require('http'),
+var http = require('http'),
 		fs = require('fs'),
 		util = require('util'),
 		os = require('os');
