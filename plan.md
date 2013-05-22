@@ -19,7 +19,7 @@
      - Non blocking I/O for scalability
      - JS for simplicity
     5. Architecture
-      - Inspired from: Tornado (python), Twisted (python), Time Machine (ruby), libevent (C), ngixn 
+      - Inspired from: Tornado (python), Twisted (python), EventMachine (ruby), libevent (C), ngixn 
       - Only one fat process (no threads, etc.) (yes but how to scale?)
       - No blocking I/O: the unique process share the memory and can run something else by waiting the end of the I/O
       - Event driven model (main loop, then event execution sequentially)
@@ -55,7 +55,7 @@
      - package.json
      - transitive deps node_modules
      - main registry works on CouchDB: cli and REST API
-     - starts as a side project by @izs but included in node main dist since 0.8?
+     - starts as a side project by @izs but included in node main dist since 0.6
 3. But
     - still 0.x -> 1.0 reached when all platforms got the same level of maturity. (ready to prod on linux)
     - too many modules

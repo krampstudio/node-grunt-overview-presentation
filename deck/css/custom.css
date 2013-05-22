@@ -29,3 +29,6 @@
     font-size: .5em;
     text-align:center;
 }
+.reveal .no-border-img img{
+    border: none;
+}

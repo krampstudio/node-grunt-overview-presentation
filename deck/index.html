@@ -51,7 +51,7 @@
                 <section>
 				        <section>
 					        <h2>About</h2>
-					        <pre class="fragment"><code data-trim contenteditable>
+					        <pre class="fragment"><code data-trim contenteditable class="javascript">
 {
     "firstName"	: "Bertrand",   
     "lastName"	: "Chevrier",
@@ -181,11 +181,11 @@
                     	<blockquote>How to build scalable real-time web app with simplicity ?</blockquote>
                     	
                     	<aside class="notes">
-	 - 2008: Ryan Dahl needed a new way to build _real-time_ web app (push based), with 2 priorities: scalability and simplicity.
-     - Netscape -> JS -> JavaScript the good parts
-     - Gmail -> Chome -> V8
-     - Non blocking I/O for scalability
-     - JS for simplicity
+	                     - 2008: Ryan Dahl needed a new way to build _real-time_ web app (push based), with 2 priorities: scalability and simplicity.
+                         - Netscape -> JS -> JavaScript the good parts
+                         - Gmail -> Chome -> V8
+                         - Non blocking I/O for scalability
+                         - JS for simplicity
 						</aside>
                     </section>
                 </section>
@@ -224,12 +224,207 @@
 						<img src="img/non_blocking_server.png" alt="non_blocking_server" width="75%" />
 					</section>
 					<section>
-							<img src="img/memory_usage.png" alt="mem" />
-							<br />
-                        	<img src="img/rps.png" alt="rps" />
+						<img src="img/memory_usage.png" alt="mem" />
+						<br />
+                    	<img src="img/rps.png" alt="rps" />
+                    	 <aside class="notes">
+                            nginx stops scalling if he calls a blocking app.
+                    	 </aside>
+					</section>
+					<section>
+                        <blockquote>Node is designed to be non blocking from top to bottom.</blockquote>
+                        <ul>
+                            <li class="fragment">Event driven model</li>
+                            <li class="fragment">Rewrite all low level I/O APIs</li>
+                            <li class="fragment highlight-red">Fat process</li>
+                        </ul>
+                        <aside class="notes">
+	                    - Only one fat process (no threads, etc.) (yes but how to scale?)
+                        - No blocking I/O: the unique process share the memory and can run something else by waiting the end of the I/O
+                        - Event driven model (main loop, then event execution sequentially)
+						</aside>
+					</section>
+					<section>
+                        <h2>JavaScript</h2>
+						<blockquote>for simplicity</blockquote>
+					</section>
+					<section>
+                        <h3>Why the choice of JS?</h3>
+                        <img src="img/the_good_parts.png" alt="JavaScript The Good Parts" class="fragment" />
+                    	<img src="img/v8.png" alt="v8"  class="fragment"  />
+                    	 <aside class="notes">
+                            Ryan Dahl would do it in C (using the libevent) but changes his mind when he read the book of crockford, and saw the performances of V8 
+                    	 </aside>
+					</section>
+					<section>
+                        <h3>The good parts for node</h3>
+                        <ul>
+                            <li>Functionnal language : fits the event model</li>
+                            <li>Easily extensible : redesign of non blocking APIs, DSLable</li>
+                            <li>Becomes popular : the language of the web</li>
+                        </ul>
+                        <aside class="notes">
+		                 - Functionnal language : callbacks, event loop and event driven programming feets well the everything must be non blocking approach
+		                 - Interpreted language : simple to use and to extends
+		                 - JS becomes popular
+		                </aside>
+					</section>
+					<section>
+                        <h2>Unix philosophy</h2>
+                        <blockquote>KISS &amp; Battery not included</blockquote>
+					</section>
+					<section>
+                        <h3>Node provides only low level APIs</h3>
+                        <blockquote>Nothing superfluous.</blockquote>
+                         <aside class="notes">
+                            Provides only core APIs to manage file system, network, etc. nothing superfluous (Batteries NOT included)
+                         </aside>
+					</section>
+					<section>
+					    <p>EcmaScript 5 + CommonJs + APIs:</p>
+                        <ul>
+                            <li>Cluster, Child_Process and Process</li>
+                            <li>Crypto</li>
+                            <li>Module, Domain, Events, Timers</li>
+                            <li>Assert, Utilities, </li>
+                            <li>File System, OS, VM and Path</li>
+                            <li>HTTP, Net, URL, QueryString, etc.</li>
+                            <li>Net, DNS, UDP</li>
+                            <li>Buffer, Stream, STDIO, Readline, TTY</li>
+                            <li>REPL</li>
+                        </ul>
+                        <small><a href="http://nodejs.org/api/" target="_blank">nodejs.org/api</a></small>
+					</section>
+					<section>
+                        <h2>JavaScript (ES5) file import ?</h2>
+                        <img src="img/desert.jpg" alt="desert" class="fragment"/>
+					</section>
+					<section>
+                        <h2><img src="img/commonjs.png" alt="CommonJs"/></h2>
+                        <ul>
+                            <li>Modules : <pre>module.exports = {};</pre></li>
+                            <li>Require : <pre>var fs = require('fs');</pre></li>
+                        </ul>
+					</section>
+					<section>
+                        <img src="img/nodejs_arch.png" alt="node architecture">
 					</section>
 				</section>
 
+                <section>
+                    <section>
+                        <h1>Diving into node</h1>
+                    </section>
+                    <section data-state="soothe" class="no-border-img">
+                        <h2>Demo : <a href="https://github.com/krampstudio/node-htop" target="_blank">node-htop</a></h2>
+                        <img src="img/demo/nodejs.png" alt="node.js" />
+                        <img src="img/demo/npm.png" alt="npm.js" /><br />
+                        <img src="img/demo/express.png" alt="express" />
+                        <img src="img/demo/underscore.png" alt="underscore" />
+                        <img src="img/demo/socketio.png" alt="socketio" />
+                        <img src="img/demo/grunt.png" alt="grunt.js" /><br />
+                        <img src="img/demo/bower.png" alt="bower" />
+                        <img src="img/demo/jquery.png" alt="jquery" />
+                    </section>
+                     <section>
+                        <h2>Coding with node</h2>
+                        <blockquote>Discovering the patterns</blockquote>
+                     </section>
+                     <section>
+                        <h2>Required Hello Node.js world</h2>
+                        <pre class="fragment"><code data-trim contenteditable class="javascript">
+var http = require("http");
+
+http.createServer(function(request, response) {
+  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.write("Hello World");
+  response.end();
+}).listen(8888);
+					    </code></pre>
+					    <pre class="fragment"><code data-trim contenteditable class="bash">
+$ node hello_node_world.js
+					    </code></pre>
+                     </section>
+                     <section>
+                        <h2>Callbacks</h2>
+                     </section>
+                     <section>
+                        <h2>Futures and promises</h2>
+                     </section>
+                     <section>
+                        <h2>Events</h2>
+                     </section>
+                     <section>
+                        <h2>Middleware</h2>
+                     </section>
+                     <section>
+                        <h2>Errors</h2>
+                     </section>
+                     <section>
+                        <h2>Cluster</h2>
+                     </section>
+                </section>
+                <section>
+                    <section>
+                        <h1><img src="img/demo/npm.png" alt="npm"/></h1>
+                        <h3>Node Package Manager</h3>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>CLI tools and REST API</li>
+                            <li>CommonJS module</li>
+                            <li>Unix philosophy</li>
+                            <li>Included in node since 0.6</li>
+                        </ul>
+                        <aside class="notes">
+                         - Unix philosophy: kiss
+                         - Embrace CommonJs, everything is a module
+                         - package.json
+                         - transitive deps node_modules
+                         - main registry works on CouchDB: cli and REST API
+                         - starts as a side project by @izs but included in node main dist since 0.6
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>package.json</h2>
+                        <pre class="fragment"><code data-trim contenteditable class="javascript">
+{
+    "name": "node-htop",
+    "version": "0.1.0",
+    "description": "Web htop like",
+    "main": "app.js",
+    "scripts": {
+        "test": "grunt test"
+    },
+    "dependencies": {
+        "express": "3.2.x",
+        "socket.io": "0.9.x",
+        "underscore": "~1.4.0"
+    }
+}
+                        </code></pre>
+                        <small><a href="https://github.com/krampstudio/node-htop/blob/master/package.json" target="_blank">demo package.json</a></small>
+                    </section>
+                    <section>
+                        <h2>Usage</h2>
+                        <pre class="fragment"><code data-trim contenteditable class="bash">
+$ npm search bower
+					    </code></pre>
+					    <pre class="fragment"><code data-trim contenteditable class="bash">
+$ npm info bower
+					    </code></pre>
+					    <pre class="fragment"><code data-trim contenteditable class="bash">
+$ npm install -g bower
+					    </code></pre>
+					    <pre class="fragment"><code data-trim contenteditable class="bash">
+$ npm install --save socket.io
+					    </code></pre>
+                    </section>
+                    
+                    <section>
+                        <h2>transitive dependencies</h2>
+                    </section>
+                </section>
 
                 
 			<section>
