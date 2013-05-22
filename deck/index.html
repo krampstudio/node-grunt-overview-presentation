@@ -236,7 +236,7 @@
                         <ul>
                             <li class="fragment">Event driven model</li>
                             <li class="fragment">Rewrite all low level I/O APIs</li>
-                            <li class="fragment highlight-red">Fat process</li>
+                            <li class="fragment">Fat process</li>
                         </ul>
                         <aside class="notes">
 	                    - Only one fat process (no threads, etc.) (yes but how to scale?)
@@ -249,7 +249,7 @@
 						<blockquote>for simplicity</blockquote>
 					</section>
 					<section>
-                        <h3>Why the choice of JS?</h3>
+                        <h3>Why JS?</h3>
                         <img src="img/the_good_parts.png" alt="JavaScript The Good Parts" class="fragment" />
                     	<img src="img/v8.png" alt="v8"  class="fragment"  />
                     	 <aside class="notes">
@@ -259,9 +259,9 @@
 					<section>
                         <h3>The good parts for node</h3>
                         <ul>
-                            <li>Functionnal language : fits the event model</li>
-                            <li>Easily extensible : redesign of non blocking APIs, DSLable</li>
-                            <li>Becomes popular : the language of the web</li>
+                            <li class="fragment">Functionnal language : fits the event model</li>
+                            <li class="fragment">Easily extensible : redesign of non blocking APIs, DSLable</li>
+                            <li class="fragment">Becomes popular : the language of the web</li>
                         </ul>
                         <aside class="notes">
 		                 - Functionnal language : callbacks, event loop and event driven programming feets well the everything must be non blocking approach
@@ -281,7 +281,7 @@
                          </aside>
 					</section>
 					<section>
-					    <p>EcmaScript 5 + CommonJs + APIs:</p>
+					    <h3>EcmaScript 5 + CommonJs + APIs:</h3>
                         <ul>
                             <li>Cluster, Child_Process and Process</li>
                             <li>Crypto</li>
@@ -292,7 +292,7 @@
                             <li>Net, DNS, UDP</li>
                             <li>Buffer, Stream, STDIO, Readline, TTY</li>
                             <li>REPL</li>
-                        </ul>
+                        </ul><br />
                         <small><a href="http://nodejs.org/api/" target="_blank">nodejs.org/api</a></small>
 					</section>
 					<section>
@@ -300,14 +300,20 @@
                         <img src="img/desert.jpg" alt="desert" class="fragment"/>
 					</section>
 					<section>
-                        <h2><img src="img/commonjs.png" alt="CommonJs"/></h2>
-                        <ul>
-                            <li>Modules : <pre>module.exports = {};</pre></li>
-                            <li>Require : <pre>var fs = require('fs');</pre></li>
-                        </ul>
+                        <h2><img src="img/commonjs.png" alt="CommonJs" width="35%"/></h2>
+                        <p>Modules</p>
+                        <pre><code data-trim contenteditable class="javascript">
+module.exports = {
+	//your object
+};
+						</code></pre>
+                        <p>Require</p>
+                        <pre><code data-trim contenteditable class="javascript">
+var fs = require('fs');
+						</code></pre>
 					</section>
 					<section>
-                        <img src="img/nodejs_arch.png" alt="node architecture">
+                        <img src="img/nodejs_arch.png" alt="node architecture" width="100%">
 					</section>
 				</section>
 
@@ -336,9 +342,11 @@
 var http = require("http");
 
 http.createServer(function(request, response) {
+
   response.writeHead(200, {"Content-Type": "text/plain"});
   response.write("Hello World");
   response.end();
+  
 }).listen(8888);
 					    </code></pre>
 					    <pre class="fragment"><code data-trim contenteditable class="bash">
@@ -387,6 +395,7 @@ var q = require('q'),
 	fs = require('fs');                     
 
 var readFile = q.node(fs.readFile);
+
 readFile('test.txt').then(function (data) {
 	console.log("finished");
 });
@@ -577,7 +586,7 @@ A-0.1
                 		<h2>Automate your projects</h2>
                 		<ul>
                 			<li>Task based</li>
-                			<li>by configuration <code>Gruntfile.js</code><li>
+                			<li>By configuration <code>Gruntfile.js</code></li>
                 			<li>NPM friendly</li>
                 			<li>Extensible by nature</li>
                 		</ul>
@@ -589,6 +598,8 @@ A-0.1
                 		<h2>Why Grunt?</h2>
                 		<ul>	
                 			<li>Wide numbers of plugins</li>
+                			<li>Simple to use</li>
+                			<li>Easy to customize</li>
                 			<li>0.5 : will use the <code>node-task</code> format</li>
                 		</ul>
                 	</section>
