@@ -1,0 +1,34 @@
+.reveal h1 {
+    font-size: 3em;
+}
+.reveal h2 {
+    font-size: 2em;
+}
+.reveal h3 {
+    font-size: 1.5em;
+}
+.reveal h4 {
+    font-size: 1em;
+}
+.reveal blockquote {
+    width:100%;
+}
+.reveal table {
+    border-collapse: collapse;
+}
+.reveal table tr td{
+    border: solid 1px #ccc;
+   font-weight:normal;
+   font-size: .7em;
+   padding:.2em;
+}
+.reveal table thead td{
+    background-color:#444;
+}
+.reveal table tfoot td{
+    font-size: .5em;
+    text-align:center;
+}
+.reveal .no-border-img img{
+    border: none;
+}
