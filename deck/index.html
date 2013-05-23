@@ -374,17 +374,17 @@ async({data: 'test'}, function(err, valid){
                      	<h2>Callback tree</h2>
                      	<pre class="fragment"><code data-trim contenteditable class="javascript">
 http.createServer(function processRequest(request, response){
-	fs.exists("/tmp/test", function(exists){
-		if(exists === true){
-			fs.stat(file, function(err, stat){
-				fs.appendFile(file, log, 'utf8', function(err){
-					db.query(function(err, data){
-						//etc ...
-					});
-				});
-			});
-		}
-	});
+    fs.exists("/tmp/test", function(exists){
+        if(exists === true){
+            fs.stat(file, function(err, stat){
+                fs.appendFile(file, log, 'utf8', function(err){
+                    db.query(function(err, data){
+                        //etc ...
+                    });
+                });
+            });
+        }
+    });
 }
 						 </code></pre>
                      </section>
@@ -424,12 +424,123 @@ myTest.start();
                      </section>
                      <section>
                         <h2>Middleware</h2>
+                        <pre class="fragment"><code data-trim contenteditable class="javascript">
+var app = {
+    stack : [],
+    use : function(middleware){
+        var fn = middleware;
+        if('function' === typeof middleware.handle){
+            fn = middleware.handle;
+        }
+        if('function' === typeof fn){
+            this.stack.push(fn);
+        }
+    },
+
+    handle : function(data){
+        var i = 0, layer;
+            for(i in this.stack){
+                layer = this.stack[i];
+                if(!layer(data)){
+                    break;
+                }
+        }
+    }
+};
+                        </code></pre>
+                        <pre class="fragment"><code data-trim contenteditable class="javascript">
+app.use(function(data){
+    console.log("Hello %s", data);
+    return  true;
+});
+app.use(function(data){
+    console.error("Goodbye %s", data);
+    return false;
+});
+app.handle('middleware');
+                        </code></pre>
+                     </section> 
+                     <section>
+                        <h3>Connect : HTTP middlewares</h3>
+                        <pre class="fragment"><code data-trim contenteditable class="javascript">
+var app = connect()
+  .use(connect.logger('dev'))
+  .use(connect.static('public'))
+  .use(function(req, res){
+    res.end('hello world\n');
+  })
+ .listen(3000);
+                        </code></pre>
                      </section>
                      <section>
                         <h2>Errors</h2>
+                            <pre class="fragment"><code data-trim contenteditable class="javascript">
+try {
+    //something that crash
+} catch(e) {
+    console.error(e);
+};
+                            </code></pre>
+                            <pre class="fragment"><code data-trim contenteditable class="javascript">
+function(cb){
+    if(error)
+        cb(new Error("Sorry..."));
+    } else {
+        cb(null, theData);
+    }
+}
+
+
+                            </code></pre>
+                            <pre class="fragment"><code data-trim contenteditable class="javascript">
+myEmitter.on('error', function(e){
+    console.error(e.stack);
+});
+                            </code></pre>
+                            <pre class="fragment"><code data-trim contenteditable class="javascript">
+                            
+                            </code></pre>
+                        </ul>
                      </section>
                      <section>
                         <h2>Cluster</h2>
+                        <pre class="fragment"><code data-trim contenteditable class="javascript">
+                        var cluster = require('cluster');
+var http = require('http');
+var numCPUs = require('os').cpus().length;
+
+if (cluster.isMaster) {
+  for (var i = 0; i &gt; numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on('exit', function(worker, code, signal) {
+    console.log('worker ' + worker.process.pid + ' died');
+  });
+  
+} else {
+ 
+  http.createServer(function(req, res) {
+    res.writeHead(200);
+    res.end("hello world\n");
+  }).listen(8000);
+  
+}                        </code></pre>
+                     </section>
+                     <section>
+                        <h2>Scaling</h2>
+                        <ul>
+                            <li>Cluster (LearnBoost/CLuster)</li>
+                            <li>Load balancing (Nginx, node-httpproxy, bouncy)</li>
+                            <li>Share state : events distribution (AMQP, Redis, etc.)</li>
+                            <li>NoHup, forever, etc.</li>
+                        </ul>
+                        <img src="img/scale.png" alt="scaling architecture" class="fragment" width="35%"/>
+                        <aside class="notes">
+                         - Cluster (LearnBoost/cluster, 
+                         - load balancing (nginx, node-proxy or bouncy), 
+                         - queue event distribution (AMQP, Redis for sockets) )
+                        </aside>
                      </section>
                 </section>
                 <section>
