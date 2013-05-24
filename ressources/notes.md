@@ -8,7 +8,9 @@
 
  [sources](http://caines.ca/blog/programming/the-node-js-community-is-quietly-changing-the-face-of-open-source/)
  
-## Best practive guide : http://nodeguide.com
+## Best practices guide
+
+ * http://nodeguide.com
  
 
 ## IDEs
