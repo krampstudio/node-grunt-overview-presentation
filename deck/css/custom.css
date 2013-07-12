@@ -19,12 +19,13 @@
 
 .reveal table {
     border-collapse: collapse;
+    margin:auto;
 }
 .reveal table tr td{
     border: solid 1px #ccc;
    font-weight:normal;
    font-size: .7em;
-   padding:.1em;
+   padding:.1em .2em;
 }
 .reveal table thead td{
     background-color:#444;

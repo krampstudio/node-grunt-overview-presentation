@@ -238,6 +238,44 @@
 						<blockquote>for scalability</blockquote>
 					</section>
 					<section>
+						<h3>Cost of I/O</h3>
+						<table>
+						    <thead>
+                                <tr>
+                                    <td>I/O</td>
+                                    <td>cycles</td>
+                                </tr>
+						    </thead>
+						    <tbody>
+                                <tr>
+                                    <td>L1-cache</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>L2-cache</td>
+                                    <td>14</td>
+                                </tr>
+                                <tr>
+                                    <td>RAM</td>
+                                    <td class="fragment">250</td>
+                                </tr>
+                                <tr>
+                                    <td>Disk</td>
+                                    <td class="fragment">41 000 000</td>
+                                </tr>
+                                <tr>
+                                    <td>Network</td>
+                                    <td class="fragment">240 000 000</td>
+                                </tr>
+						    </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop</td>
+                                </tr>
+                            </tfoot>
+						</table>
+					</section>
+					<section>
 						<h3>Threaded server</h3>
 						<img src="img/threaded_server.png" alt="threaded_server" width="75%" />
 					</section>
@@ -246,8 +284,11 @@
 						<img src="img/non_blocking_server.png" alt="non_blocking_server" width="75%" />
 					</section>
 					<section>
+					    <h3>memory usage / concurrent connections</h3>
 						<img src="img/memory_usage.png" alt="mem" />
-						<br />
+					</section>
+					<section>
+					    <h3>request p. sec. / concurrent connections</h3>
                     	<img src="img/rps.png" alt="rps" />
                     	 <aside class="notes">
                             nginx stops scalling if he calls a blocking app.
@@ -308,8 +349,8 @@
                             <li>Cluster, Child_Process and Process</li>
                             <li>Crypto</li>
                             <li>Module, Domain, Events, Timers</li>
-                            <li>Assert, Utilities, </li>
-                            <li>File System, OS, VM and Path</li>
+                            <li>Assert, Utilities</li>
+                            <li>File System, Path, OS, VM</li>
                             <li>HTTP, Net, URL, QueryString, etc.</li>
                             <li>Net, DNS, UDP</li>
                             <li>Buffer, Stream, STDIO, Readline, TTY</li>
@@ -343,17 +384,6 @@ var fs = require('fs');
                     <section>
                         <h1>Diving into node</h1>
                     </section>
-                    <section data-state="soothe" class="no-border-img">
-                        <h2>Demo : <a href="https://github.com/krampstudio/node-htop" target="_blank">node-htop</a></h2>
-                        <img src="img/demo/nodejs.png" alt="node.js" />
-                        <img src="img/demo/npm.png" alt="npm.js" /><br />
-                        <img src="img/demo/express.png" alt="express" />
-                        <img src="img/demo/underscore.png" alt="underscore" />
-                        <img src="img/demo/socketio.png" alt="socketio" />
-                        <img src="img/demo/grunt.png" alt="grunt.js" /><br />
-                        <img src="img/demo/bower.png" alt="bower" />
-                        <img src="img/demo/jquery.png" alt="jquery" />
-                    </section>
                      <section>
                         <h2>Coding with node</h2>
                         <blockquote>Discovering the patterns</blockquote>
@@ -375,6 +405,17 @@ http.createServer(function(request, response) {
 $ node hello_node_world.js
 					    </code></pre>
                      </section>
+                     <section data-state="soothe" class="no-border-img">
+                        <h2>Demo : <a href="https://github.com/krampstudio/node-htop" target="_blank">node-htop</a></h2>
+                        <img src="img/demo/nodejs.png" alt="node.js" />
+                        <img src="img/demo/npm.png" alt="npm.js" /><br />
+                        <img src="img/demo/express.png" alt="express" />
+                        <img src="img/demo/lo-dash.png" alt="lo-dash" />
+                        <img src="img/demo/socketio.png" alt="socketio" />
+                        <img src="img/demo/grunt.png" alt="grunt.js" /><br />
+                        <img src="img/demo/bower.png" alt="bower" />
+                        <img src="img/demo/jquery.png" alt="jquery" />
+                    </section>
                      <section>
                         <h2>Callbacks, Errorbacks</h2>
                         <pre class="fragment"><code data-trim contenteditable class="bash">
@@ -409,6 +450,24 @@ http.createServer(function processRequest(request, response){
     });
 }
 						 </code></pre>
+                     </section>
+                     <section>
+                        <h2>Async management</h2>
+                        <pre class="fragment"><code data-trim contenteditable class="javascript">
+var async = require('async');
+var fs = require('fs');
+
+async.filter(['file1','file2','file3'], fs.exists, function(results){
+   //results => [true, false, true]
+});
+                        </code></pre>
+                        <pre class="fragment"><code data-trim contenteditable class="javascript">
+var async = require('async');
+
+async.filter(['file1','file2','file3'], fs.exists, function(results){
+   //results => [true, false, true]
+});
+                        </code></pre>
                      </section>
                      <section>
                         <h2>Futures and promises</h2>
