@@ -298,7 +298,7 @@
                         <blockquote>Node is designed to be non blocking from top to bottom.</blockquote>
                         <ul>
                             <li class="fragment">Event driven model</li>
-                            <li class="fragment">Rewrite all low level I/O APIs</li>
+                            <li class="fragment">Low levels I/O APIs rewritten</li>
                             <li class="fragment">Fat process</li>
                         </ul>
                         <aside class="notes">
@@ -407,13 +407,11 @@ $ node hello_node_world.js
                      </section>
                      <section data-state="soothe" class="no-border-img">
                         <h2>Demo : <a href="https://github.com/krampstudio/node-htop" target="_blank">node-htop</a></h2>
-                        <img src="img/demo/nodejs.png" alt="node.js" />
-                        <img src="img/demo/npm.png" alt="npm.js" /><br />
                         <img src="img/demo/express.png" alt="express" />
-                        <img src="img/demo/lo-dash.png" alt="lo-dash" />
                         <img src="img/demo/socketio.png" alt="socketio" />
-                        <img src="img/demo/grunt.png" alt="grunt.js" /><br />
-                        <img src="img/demo/bower.png" alt="bower" />
+                        <img src="img/demo/lo-dash.png" alt="lo-dash" /><br />
+                        <img src="img/demo/grunt.png" alt="grunt.js" />
+                        <img src="img/demo/bower.png" alt="bower" /><br />
                         <img src="img/demo/jquery.png" alt="jquery" />
                     </section>
                      <section>
@@ -432,6 +430,7 @@ async({data: 'test'}, function(err, valid){
 	console.log("finished");
 });
                         </code></pre>
+                        <small>demo:lib/poller/mem.js#32</small>
                      </section>
                      <section>
                      	<h2>Callback tree</h2>
@@ -450,6 +449,7 @@ http.createServer(function processRequest(request, response){
     });
 }
 						 </code></pre>
+                        <small>demo:lib/poller/mem.js#32</small>
                      </section>
                      <section>
                         <h2>Async management</h2>
@@ -460,14 +460,22 @@ var fs = require('fs');
 async.filter(['file1','file2','file3'], fs.exists, function(results){
    //results => [true, false, true]
 });
-                        </code></pre>
-                        <pre class="fragment"><code data-trim contenteditable class="javascript">
-var async = require('async');
 
-async.filter(['file1','file2','file3'], fs.exists, function(results){
-   //results => [true, false, true]
+function f1(cb){
+    fs.exists('dir1', function(result){
+        if(result === true){
+            cb(null, true);
+        } else {
+            cb(new Error('Oh crap!');
+        }
+    });
+}
+
+async.series([f1, f2], function(err, results){
+   // results => [true, true] or null
 });
                         </code></pre>
+                        <small>demo:lib/statpoller.js#124</small>
                      </section>
                      <section>
                         <h2>Futures and promises</h2>
@@ -479,6 +487,8 @@ var readFile = q.node(fs.readFile);
 
 readFile('test.txt').then(function (data) {
 	console.log("finished");
+}).then(function(){
+    console.log("do something else");
 });
 
                         </code></pre>
@@ -486,6 +496,7 @@ readFile('test.txt').then(function (data) {
                      <section>
                         <h2>Events</h2>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
+var events = require('events');
 var Test = function(){
 	events.EventEmitter.call(this);
 };
@@ -502,6 +513,7 @@ myTest.on('started', function(data){
 });
 myTest.start();
 						</code></pre>
+                        <small>demo:lib/statpoller.js#1</small>
                      </section>
                      <section>
                         <h2>Middleware</h2>
@@ -529,6 +541,8 @@ var app = {
     }
 };
                         </code></pre>
+                     </section>
+                     <section>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
 app.use(function(data){
     console.log("Hello %s", data);
@@ -552,6 +566,7 @@ var app = connect()
   })
  .listen(3000);
                         </code></pre>
+                        <small>demo:app.js#20</small>
                      </section>
                      <section>
                         <h2>Errors</h2>
@@ -560,8 +575,7 @@ try {
     //something that crash
 } catch(e) {
     console.error(e);
-};
-                            </code></pre>
+};</code></pre>
                             <pre class="fragment"><code data-trim contenteditable class="javascript">
 function(cb){
     if(error)
@@ -569,19 +583,23 @@ function(cb){
     } else {
         cb(null, theData);
     }
-}
-
-
-                            </code></pre>
+}</code></pre>
+                     </section>
+                     <section>
                             <pre class="fragment"><code data-trim contenteditable class="javascript">
 myEmitter.on('error', function(e){
     console.error(e.stack);
-});
-                            </code></pre>
+});</code></pre>
                             <pre class="fragment"><code data-trim contenteditable class="javascript">
-                            
-                            </code></pre>
-                        </ul>
+var aDomain = domain.create();
+aDomain.on('error', function(err){
+    //do wafyw with the err
+});
+
+aDomain.run(function(){
+    //do some errorable stuffs (throws, errbacks, etc. are catched)
+});</code></pre>
+                        <small>demo:lib/statpoller.js#63</small>
                      </section>
                      <section>
                         <h2>Cluster</h2>
@@ -596,17 +614,13 @@ if (cluster.isMaster) {
   }
 
   cluster.on('exit', function(worker, code, signal) {
-    console.log('worker ' + worker.process.pid + ' died');
+    //manage worker stop
   });
   
 } else {
- 
-  http.createServer(function(req, res) {
-    res.writeHead(200);
-    res.end("hello world\n");
-  }).listen(8000);
-  
+    //I'm in a fork
 }                        </code></pre>
+                        <small>demo:server.js</small>
                      </section>
                      <section>
                         <h2>Scaling</h2>
