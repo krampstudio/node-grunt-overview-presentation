@@ -540,7 +540,7 @@ var app = {
                         </code></pre>
                      </section>
                      <section>
-                        <pre class="fragment"><code data-trim contenteditable class="javascript">
+                        <pre><code data-trim contenteditable class="javascript">
 app.use(function(data){
     console.log("Hello %s", data);
     return  true;
@@ -605,7 +605,7 @@ aDomain.run(function(){
                     </section>
                     <section>
                         <h3>Scale Up</h3>
-                        <p>Use your CPUs</p>
+                        <blockquote class="fragment">Use your CPUs !</blockquote>
                     </section>
             
                      <section>
@@ -631,42 +631,47 @@ if (cluster.isMaster) {
                      </section>
                      <section>
                         <h3>Scale out</h3>
-                        <ul>
-                            <li class="fragment">Load balance</li>
-                            <li class="fragment">Share the events</li>
-                        </ul>
+                        <blockquote class="fragment">Load balance and share the events</blockquote>
                     </section>
                     <section>
-                        <img src="img/scale.png" alt="scaling architecture" width="50%"/>
-                     </section>
-                    <section>
+                    	<div>
+                        	<img src="img/scale.png" alt="scaling architecture" />
+                    	</div>
+                    </section>
                 </section>
 
                 <section>
                     <section>
                         <h1><img src="img/npm-logo.png" alt="npm"/></h1>
-                        <h3>Node Package Manager</h3>
+                        <strong>Node Package Manager</strong>
                     </section>
                     <section>
-                    	<h3>NPM ?</h3>
-                        <ul>
-                            <li>CLI tools <pre>$ npm --help</pre></li>
-                            <li>REST API <a href="http://registry.npmjs.org/" target="_blank" >registry.npmjs.org</a></li>
-                            <li>Web site <a href="http://npmjs.org/" target="_blank" >npmjs.org</a></li>
-                            <li>Packages as CommonJS modules</li>
-                            <li>Included in node.js since 0.6</li>
-                        </ul>
-                        <aside class="notes">
+                    	<h2>NPM do :</h2>
+                    	<blockquote class="fragment">packages as CommonJS modules</blockquote>
+                    	<aside class="notes">
                          - Unix philosophy: kiss
                          - Embrace CommonJs, everything is a module
                          - package.json
                          - transitive deps node_modules
+                        </aside>
+                    </section>
+                    <section>
+                    	<h2>How ?</h2>
+                        <ul>
+                            <li class="fragment">Simple CLI tools <pre>$ npm --help</pre></li>
+                            <li class="fragment">Registry <a href="http://registry.npmjs.org/" target="_blank" >registry.npmjs.org</a></li>
+                            <li class="fragment">Web site <a href="http://npmjs.org/" target="_blank" >npmjs.org</a></li>
+                            <li class="fragment">Included in node.js since 0.6</li>
+                            <li class="fragment">Git friendly</li>
+                        </ul>
+                        <aside class="notes">
                          - main registry works on CouchDB: cli and REST API
                          - starts as a side project by @izs but included in node main dist since 0.6
                         </aside>
                     </section>
                     <section>
-                        <h2>package.json</h2>
+                    	<h3>Module Metas</h3>
+                        <pre>package.json</pre>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
 {
     "name": "node-htop",
@@ -707,25 +712,11 @@ $ npm publish
 					    </code></pre>
                     </section>
                     <section>
-                    	<h2>Details</h2>
-                    	<div style="display:inline-block">
-		                	<h3>Package</h3>
-		                	<ul>
-		                    	<li>name@version</li>
-		                    	<li>git friendly</li>
-		                    </ul>
-                        </div>
-                        <div style="display:inline-block;width:2em;"></div>
-                        <div style="display:inline-block">
-                        	<h3>Scopes</h3>
-                        	<ul>
-		                    	<li>global -&gt; user -&gt; project</li>
-		                    	<li>main, dev, peer</li>
-		                    </ul>
-		               </div>
+						<h3>Scopes</h3>
+						<pre class="fragment">global -&gt; user -&gt; project</pre>
                     </section>
                     <section>
-                        <h2>Transitive dependencies</h2>
+                        <h3>Transitive dependencies</h3>
                         <pre>
 A-0.1 -> B-0.1, C-0.1
 B-01 -> C-0.2
