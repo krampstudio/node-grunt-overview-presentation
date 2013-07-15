@@ -601,8 +601,18 @@ aDomain.run(function(){
 });</code></pre>
                         <small>demo:lib/statpoller.js#63</small>
                      </section>
+
                      <section>
-                        <h2>Cluster</h2>
+                        <h2>Scaling node.js</h2>
+                        <blockquote>But, wait, I've only one process...</blockquote>        
+                    </section>
+                    <section>
+                        <h3>Scale Up</h3>
+                        <p>Use your CPUs</p>
+                    </section>
+            
+                     <section>
+                        <h4>Cluster</h4>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
                         var cluster = require('cluster');
 var http = require('http');
@@ -623,21 +633,18 @@ if (cluster.isMaster) {
                         <small>demo:server.js</small>
                      </section>
                      <section>
-                        <h2>Scaling</h2>
+                        <h3>Scale out</h3>
                         <ul>
-                            <li>Cluster (LearnBoost/CLuster)</li>
-                            <li>Load balancing (Nginx, node-httpproxy, bouncy)</li>
-                            <li>Share state : events distribution (AMQP, Redis, etc.)</li>
-                            <li>NoHup, forever, etc.</li>
+                            <li class="fragment">Load balance</li>
+                            <li class="fragment">Share the events</li>
                         </ul>
-                        <img src="img/scale.png" alt="scaling architecture" class="fragment" width="35%"/>
-                        <aside class="notes">
-                         - Cluster (LearnBoost/cluster, 
-                         - load balancing (nginx, node-proxy or bouncy), 
-                         - queue event distribution (AMQP, Redis for sockets) )
-                        </aside>
+                    </section>
+                    <section>
+                        <img src="img/scale.png" alt="scaling architecture" width="50%"/>
                      </section>
+                    <section>
                 </section>
+
                 <section>
                     <section>
                         <h1><img src="img/npm-logo.png" alt="npm"/></h1>
