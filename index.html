@@ -9,15 +9,12 @@
 		<meta name="description" content="An introduction to JavaScript on the server and tooling">
 		<meta name="author" content="Bertrand Chevrier">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-        <link ref="icon" href="favicon.ico">
+        <link ref="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
 		<link rel="stylesheet" href="css/reveal.min.css" />
-		<link rel="stylesheet" href="css/theme/default.css" id="theme" />
+		<link rel="stylesheet" href="css/theme/serif.css" id="theme" />
 		<link rel="stylesheet" href="css/custom.css" />
 
 		<!-- For syntax highlighting -->
@@ -43,7 +40,7 @@
 <!-- COVER -->
 			    <section>
 				    <h1>JavaScript as a Platform</h1>
-				    <h3>Node.js, NPM and Grunt</h3>
+				    <strong>Node.js, NPM and Grunt</strong>
 			    </section>
 
 
@@ -69,15 +66,23 @@
 					        </code></pre>
 				        </section>
 				        <section>
+				            <h2>JS, OSS & me</h2>
+				            <div>
+                                <img  src="img/grunt_small.png" alt="Grunt" title="Grunt" />
+				            </div>
+				            <div>
+                                <img src="img/jquery-ui.png" alt="jQuery-UI" title="jQuery-UI" />
+				            </div>
+                        </section>
+				        <section>
 				            <h2>Follow the dealer</h2>
-				            <div style="display:inline-block;">
-                                <img src="img/qrcodes/blog.png" alt="http://krampstudio.com" title="krampstudio.com" /><br />
+				            <div class="inline">
+                                <img src="img/qrcodes/blog.png" alt="http://krampstudio.com" title="krampstudio.com" class="border" /><br />
                                 <small>krampstudio.com</small>
 				            </div>
-				            <div style="display:inline-block; width:4em;">
-				            </div>
-				            <div style="display:inline-block;">
-                                <img src="img/qrcodes/github.png" alt="http://github.com/krampstudio" title="github.com/krampstudio" /><br />
+				            <div class="inline sep"></div>
+				            <div class="inline">
+                                <img src="img/qrcodes/github.png" alt="http://github.com/krampstudio" title="github.com/krampstudio" class="border" /><br />
                                 <small>github.com/krampstudio</small>
 				            </div>
                         </section>
@@ -90,7 +95,7 @@
 
 <!-- NODE -->
 			    <section>
-                    <h1><img src="img/nodejs-wall.png" alt="node.js" /></h1>
+                    <h1><img src="img/nodejs.png" alt="node.js" /></h1>
 			    </section>
 			    
 <!-- WHY Node -->
@@ -166,7 +171,7 @@
                         </ol>
                     </section>
                     <section>
-                    	<h1>WTF is node.js ?</h1>
+                    	<h2>WTF is node.js ?</h2>
                     	<blockquote class="fragment">The illegitimate child of Google and Netscape !</blockquote>
                     </section>
                     <section>
@@ -176,7 +181,7 @@
                     	<img src="img/theory2.png" alt="from netscape" />
                     </section>
                     <section>
-                    	<img src="img/rya.jpg" alt="rya" />
+                    	<img src="img/rya.png" alt="rya" />
                     	<p>2008, Ryan Dahl</p>
                     	<blockquote>How to build scalable real-time web app with simplicity ?</blockquote>
                     	
@@ -189,11 +194,27 @@
 						</aside>
                     </section>
                 </section>
+
+<!--ARCHITECTURE -->
 				<section>
 					<section>
 						<h1>Architecture</h1>
 					</section>
 					<section>
+					    <h2>node.js isn't</h2>
+						<ul>
+							<li class="fragment">A programming language</li>
+							<li class="fragment">A web framework</li>
+						</ul>
+					</section>
+					<section>
+					    <h2>node.js is</h2>
+						<ul>
+							<li class="fragment">A low level lib for I/O programming</li>
+						</ul>
+					</section>
+					<section>
+					    <h2>node.js design</h2>
 						<ul>
 							<li>Non blocking I/O</li>
 							<li>Event driven model</li>
@@ -216,6 +237,44 @@
 						<blockquote>for scalability</blockquote>
 					</section>
 					<section>
+						<h3>Cost of I/O</h3>
+						<table>
+						    <thead>
+                                <tr>
+                                    <td>I/O</td>
+                                    <td>cycles</td>
+                                </tr>
+						    </thead>
+						    <tbody>
+                                <tr>
+                                    <td>L1-cache</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>L2-cache</td>
+                                    <td>14</td>
+                                </tr>
+                                <tr>
+                                    <td>RAM</td>
+                                    <td class="fragment">250</td>
+                                </tr>
+                                <tr>
+                                    <td>Disk</td>
+                                    <td class="fragment">41 000 000</td>
+                                </tr>
+                                <tr>
+                                    <td>Network</td>
+                                    <td class="fragment">240 000 000</td>
+                                </tr>
+						    </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop</td>
+                                </tr>
+                            </tfoot>
+						</table>
+					</section>
+					<section>
 						<h3>Threaded server</h3>
 						<img src="img/threaded_server.png" alt="threaded_server" width="75%" />
 					</section>
@@ -224,8 +283,11 @@
 						<img src="img/non_blocking_server.png" alt="non_blocking_server" width="75%" />
 					</section>
 					<section>
+					    <h3>memory usage / concurrent connections</h3>
 						<img src="img/memory_usage.png" alt="mem" />
-						<br />
+					</section>
+					<section>
+					    <h3>request p. sec. / concurrent connections</h3>
                     	<img src="img/rps.png" alt="rps" />
                     	 <aside class="notes">
                             nginx stops scalling if he calls a blocking app.
@@ -235,7 +297,7 @@
                         <blockquote>Node is designed to be non blocking from top to bottom.</blockquote>
                         <ul>
                             <li class="fragment">Event driven model</li>
-                            <li class="fragment">Rewrite all low level I/O APIs</li>
+                            <li class="fragment">Low levels I/O APIs rewritten</li>
                             <li class="fragment">Fat process</li>
                         </ul>
                         <aside class="notes">
@@ -286,8 +348,8 @@
                             <li>Cluster, Child_Process and Process</li>
                             <li>Crypto</li>
                             <li>Module, Domain, Events, Timers</li>
-                            <li>Assert, Utilities, </li>
-                            <li>File System, OS, VM and Path</li>
+                            <li>Assert, Utilities</li>
+                            <li>File System, Path, OS, VM</li>
                             <li>HTTP, Net, URL, QueryString, etc.</li>
                             <li>Net, DNS, UDP</li>
                             <li>Buffer, Stream, STDIO, Readline, TTY</li>
@@ -296,11 +358,11 @@
                         <small><a href="http://nodejs.org/api/" target="_blank">nodejs.org/api</a></small>
 					</section>
 					<section>
-                        <h2>JavaScript (ES5) file import ?</h2>
+                        <h3>JavaScript (ES5) file import ?</h3>
                         <img src="img/desert.jpg" alt="desert" class="fragment"/>
 					</section>
 					<section>
-                        <h2><img src="img/commonjs.png" alt="CommonJs" width="35%"/></h2>
+                        <h3><img src="img/commonjs.png" alt="CommonJs" width="35%"/></h3>
                         <p>Modules</p>
                         <pre><code data-trim contenteditable class="javascript">
 module.exports = {
@@ -317,27 +379,17 @@ var fs = require('fs');
 					</section>
 				</section>
 
+<!-- INTO NODE -->
                 <section>
                     <section>
                         <h1>Diving into node</h1>
-                    </section>
-                    <section data-state="soothe" class="no-border-img">
-                        <h2>Demo : <a href="https://github.com/krampstudio/node-htop" target="_blank">node-htop</a></h2>
-                        <img src="img/demo/nodejs.png" alt="node.js" />
-                        <img src="img/demo/npm.png" alt="npm.js" /><br />
-                        <img src="img/demo/express.png" alt="express" />
-                        <img src="img/demo/underscore.png" alt="underscore" />
-                        <img src="img/demo/socketio.png" alt="socketio" />
-                        <img src="img/demo/grunt.png" alt="grunt.js" /><br />
-                        <img src="img/demo/bower.png" alt="bower" />
-                        <img src="img/demo/jquery.png" alt="jquery" />
                     </section>
                      <section>
                         <h2>Coding with node</h2>
                         <blockquote>Discovering the patterns</blockquote>
                      </section>
                      <section>
-                        <h2>Required Hello Node.js world</h2>
+                        <h3>Required Hello Node.js world</h3>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
 var http = require("http");
 
@@ -353,8 +405,25 @@ http.createServer(function(request, response) {
 $ node hello_node_world.js
 					    </code></pre>
                      </section>
+                     <section data-state="soothe">
+                        <h3>Demo : <a href="https://github.com/krampstudio/node-htop" target="_blank">node-htop</a></h3>
+                        <img src="img/demo/express.png" alt="express" />
+                        <img src="img/demo/socketio.png" alt="socketio" />
+                        <img src="img/demo/lo-dash.png" alt="lo-dash" /><br />
+                        <img src="img/demo/grunt.png" alt="grunt.js" />
+                        <img src="img/demo/bower.png" alt="bower" /><br />
+                        <img src="img/demo/jquery.png" alt="jquery" />
+                    </section>
+                    <section data-state="soothe">
+                        <h4>Polling system stats</h4>
+                        <img src="img/statpoller.png" alt="StatPoller" />
+                    </section>
+                    <section data-state="soothe">
+                        <h4>Real time</h4>
+                        <img src="img/socket.png" alt="socket" />
+                    </section>
                      <section>
-                        <h2>Callbacks, Errorbacks</h2>
+                        <h3>Callbacks, Errorbacks</h3>
                         <pre class="fragment"><code data-trim contenteditable class="bash">
 function async(data, callback) {
     if (!data) {
@@ -369,9 +438,10 @@ async({data: 'test'}, function(err, valid){
 	console.log("finished");
 });
                         </code></pre>
+                        <small>demo:lib/poller/mem.js#32</small>
                      </section>
-                     <section>
-                     	<h2>Callback tree</h2>
+                     <section data-state="alert">
+                     	<h3>Callback tree</h3>
                      	<pre class="fragment"><code data-trim contenteditable class="javascript">
 http.createServer(function processRequest(request, response){
     fs.exists("/tmp/test", function(exists){
@@ -387,9 +457,36 @@ http.createServer(function processRequest(request, response){
     });
 }
 						 </code></pre>
+                        <small>demo:lib/poller/mem.js#32</small>
                      </section>
-                     <section>
-                        <h2>Futures and promises</h2>
+                     <section data-state="soothe">
+                        <h3>Async management</h3>
+                        <pre class="fragment"><code data-trim contenteditable class="javascript">
+var async = require('async');
+var fs = require('fs');
+
+async.filter(['file1','file2','file3'], fs.exists, function(results){
+   //results => [true, false, true]
+});
+
+function f1(cb){
+    fs.exists('dir1', function(result){
+        if(result === true){
+            cb(null, true);
+        } else {
+            cb(new Error('Oh crap!');
+        }
+    });
+}
+
+async.series([f1, f2], function(err, results){
+   // results => [true, true] or null
+});
+                        </code></pre>
+                        <small>demo:lib/statpoller.js#124</small>
+                     </section>
+                     <section data-state="soothe">
+                        <h3>Futures and promises</h3>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
 var q = require('q'),
 	fs = require('fs');                     
@@ -398,13 +495,16 @@ var readFile = q.node(fs.readFile);
 
 readFile('test.txt').then(function (data) {
 	console.log("finished");
+}).then(function(){
+    console.log("do something else");
 });
 
                         </code></pre>
                      </section>
                      <section>
-                        <h2>Events</h2>
+                        <h3>Events</h3>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
+var events = require('events');
 var Test = function(){
 	events.EventEmitter.call(this);
 };
@@ -421,9 +521,10 @@ myTest.on('started', function(data){
 });
 myTest.start();
 						</code></pre>
+                        <small>demo:lib/statpoller.js#1</small>
                      </section>
                      <section>
-                        <h2>Middleware</h2>
+                        <h3>Middleware</h3>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
 var app = {
     stack : [],
@@ -448,7 +549,9 @@ var app = {
     }
 };
                         </code></pre>
-                        <pre class="fragment"><code data-trim contenteditable class="javascript">
+                     </section>
+                     <section>
+                        <pre><code data-trim contenteditable class="javascript">
 app.use(function(data){
     console.log("Hello %s", data);
     return  true;
@@ -461,7 +564,7 @@ app.handle('middleware');
                         </code></pre>
                      </section> 
                      <section>
-                        <h3>Connect : HTTP middlewares</h3>
+                        <h4>Connect : HTTP middlewares</h4>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
 var app = connect()
   .use(connect.logger('dev'))
@@ -471,16 +574,16 @@ var app = connect()
   })
  .listen(3000);
                         </code></pre>
+                        <small>demo:app.js#20</small>
                      </section>
                      <section>
-                        <h2>Errors</h2>
+                        <h3>Errors</h3>
                             <pre class="fragment"><code data-trim contenteditable class="javascript">
 try {
     //something that crash
 } catch(e) {
     console.error(e);
-};
-                            </code></pre>
+};</code></pre>
                             <pre class="fragment"><code data-trim contenteditable class="javascript">
 function(cb){
     if(error)
@@ -488,22 +591,36 @@ function(cb){
     } else {
         cb(null, theData);
     }
-}
-
-
-                            </code></pre>
+}</code></pre>
+                     </section>
+                     <section>
                             <pre class="fragment"><code data-trim contenteditable class="javascript">
 myEmitter.on('error', function(e){
     console.error(e.stack);
-});
-                            </code></pre>
+});</code></pre>
                             <pre class="fragment"><code data-trim contenteditable class="javascript">
-                            
-                            </code></pre>
-                        </ul>
+var aDomain = domain.create();
+aDomain.on('error', function(err){
+    //do wafyw with the err
+});
+
+aDomain.run(function(){
+    //do some errorable stuffs (throws, errbacks, etc. are catched)
+});</code></pre>
+                        <small>demo:lib/statpoller.js#63</small>
                      </section>
+
                      <section>
-                        <h2>Cluster</h2>
+                        <h2>Scaling node.js</h2>
+                        <blockquote>But, wait, I've only one process...</blockquote>        
+                    </section>
+                    <section>
+                        <h3>Scale Up</h3>
+                        <blockquote class="fragment">Use your CPUs !</blockquote>
+                    </section>
+            
+                     <section>
+                        <h4>Cluster</h4>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
                         var cluster = require('cluster');
 var http = require('http');
@@ -515,59 +632,58 @@ if (cluster.isMaster) {
   }
 
   cluster.on('exit', function(worker, code, signal) {
-    console.log('worker ' + worker.process.pid + ' died');
+    //manage worker stop
   });
   
 } else {
- 
-  http.createServer(function(req, res) {
-    res.writeHead(200);
-    res.end("hello world\n");
-  }).listen(8000);
-  
+    //I'm in a fork
 }                        </code></pre>
+                        <small>demo:server.js</small>
                      </section>
                      <section>
-                        <h2>Scaling</h2>
-                        <ul>
-                            <li>Cluster (LearnBoost/CLuster)</li>
-                            <li>Load balancing (Nginx, node-httpproxy, bouncy)</li>
-                            <li>Share state : events distribution (AMQP, Redis, etc.)</li>
-                            <li>NoHup, forever, etc.</li>
-                        </ul>
-                        <img src="img/scale.png" alt="scaling architecture" class="fragment" width="35%"/>
-                        <aside class="notes">
-                         - Cluster (LearnBoost/cluster, 
-                         - load balancing (nginx, node-proxy or bouncy), 
-                         - queue event distribution (AMQP, Redis for sockets) )
-                        </aside>
-                     </section>
+                        <h3>Scale out</h3>
+                        <blockquote class="fragment">Load balance and share the events</blockquote>
+                    </section>
+                    <section>
+                    	<div>
+                        	<img src="img/scale.png" alt="scaling architecture" />
+                    	</div>
+                    </section>
                 </section>
+
+<!-- NPM -->
                 <section>
                     <section>
                         <h1><img src="img/npm-logo.png" alt="npm"/></h1>
-                        <h3>Node Package Manager</h3>
+                        <strong>Node Package Manager</strong>
                     </section>
                     <section>
-                    	<h3>NPM ?</h3>
-                        <ul>
-                            <li>CLI tools <pre>$ npm --help</pre></li>
-                            <li>REST API <a href="http://registry.npmjs.org/" target="_blank" >registry.npmjs.org</a></li>
-                            <li>Web site <a href="http://npmjs.org/" target="_blank" >npmjs.org</a></li>
-                            <li>Packages as CommonJS modules</li>
-                            <li>Included in node.js since 0.6</li>
-                        </ul>
-                        <aside class="notes">
+                    	<h2>NPM do :</h2>
+                    	<blockquote class="fragment">packages as CommonJS modules</blockquote>
+                    	<aside class="notes">
                          - Unix philosophy: kiss
                          - Embrace CommonJs, everything is a module
                          - package.json
                          - transitive deps node_modules
+                        </aside>
+                    </section>
+                    <section>
+                    	<h2>How ?</h2>
+                        <ul>
+                            <li class="fragment">Simple CLI tools <pre>$ npm --help</pre></li>
+                            <li class="fragment">Registry <a href="http://registry.npmjs.org/" target="_blank" >registry.npmjs.org</a></li>
+                            <li class="fragment">Web site <a href="http://npmjs.org/" target="_blank" >npmjs.org</a></li>
+                            <li class="fragment">Included in node.js since 0.6</li>
+                            <li class="fragment">Git friendly</li>
+                        </ul>
+                        <aside class="notes">
                          - main registry works on CouchDB: cli and REST API
                          - starts as a side project by @izs but included in node main dist since 0.6
                         </aside>
                     </section>
                     <section>
-                        <h2>package.json</h2>
+                    	<h2>Module Metas</h2>
+                        <pre>package.json</pre>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
 {
     "name": "node-htop",
@@ -608,22 +724,8 @@ $ npm publish
 					    </code></pre>
                     </section>
                     <section>
-                    	<h2>Details</h2>
-                    	<div style="display:inline-block">
-		                	<h3>Package</h3>
-		                	<ul>
-		                    	<li>name@version</li>
-		                    	<li>git friendly</li>
-		                    </ul>
-                        </div>
-                        <div style="display:inline-block;width:2em;"></div>
-                        <div style="display:inline-block">
-                        	<h3>Scopes</h3>
-                        	<ul>
-		                    	<li>global -&gt; user -&gt; project</li>
-		                    	<li>main, dev, peer</li>
-		                    </ul>
-		               </div>
+						<h2>Scopes</h2>
+						<pre class="fragment">global -&gt; user -&gt; project</pre>
                     </section>
                     <section>
                         <h2>Transitive dependencies</h2>
@@ -653,20 +755,21 @@ A-0.1
 						</div>
                     </section>
                 </section>
-                
+
+<!-- FUN BUT -->
                 <section>
                 	<section>
                 		<h1>Node.js is fun but...</h1>
                 	</section>
-                	<section>
-                		<h3>Defects</h3>
+                	<section> 
+                		<h2>Defects</h2>
                 		<ul>
-                			<li>Young project</li>
-                			<li>Libraries hell</li>
-                			<li>Error management</li>
-                			<li>Monoculture</li>
-                			<li>Noob friendly</li>
-                			<li>Devops required</li>
+                			<li class="fragment grow">Young project</li>
+                			<li class="fragment grow">Libraries hell</li>
+                			<li class="fragment grow">Error management</li>
+                			<li class="fragment grow">Monoculture</li>
+                			<li class="fragment grow">Noob friendly</li>
+                			<li class="fragment grow">Devops required</li>
                 		</ul>
 		            	<aside class="notes">
 		            	- still 0.x -> 1.0 reached when all platforms got the same level of maturity. (ready to prod on linux)
@@ -689,21 +792,21 @@ A-0.1
                 
 <!-- GRUNT -->
                 <section>
-                	<section class="no-border-img">
+                	<section>
                 		<h1><img src="img/grunt_logo.png" alt="grunt"/></h1>
-                		<h3>Grunt, the task runner</h1>
+                		<strong>Grunt, the task runner</strong>
                 	</section>
                 	<section>
                 		<h2>Automate your projects</h2>
                 		<ul>
-                			<li>Task based</li>
-                			<li>By configuration <code>Gruntfile.js</code></li>
-                			<li>NPM friendly</li>
-                			<li>Extensible by nature</li>
+                			<li class="fragment">Task based</li>
+                			<li class="fragment">By configuration <code>Gruntfile.js</code></li>
+                			<li class="fragment">NPM friendly</li>
+                			<li class="fragment">Extensible by nature</li>
                 		</ul>
                 	</section>
                 	<section>
-                		<h2>Let's do some Grunt</h2>
+                		<h2>Let's do some Grrrrunt</h2>
                 	</section>
                 	<section>
                 		<h2>Why Grunt?</h2>
@@ -722,19 +825,24 @@ A-0.1
                 	</section>
                 </section>
 
-                
-				<section>
-		            <div style="display:inline-block;">
-                        <img src="img/qrcodes/demo.png" alt="http://github.com/krampstudio/node-htop" title="github.com/krampstudio/node-htop" /><br />
-                        <small>demo</small>
-		            </div>
-		            <div style="display:inline-block; width:4em;">
-		            </div>
-		            <div style="display:inline-block;">
-                        <img src="img/qrcodes/slides.png" alt="http://github.com/krampstudio/node-grunt-overview-presentation" title="github.com/github.com/krampstudio/node-grunt-overview-presentation" /><br />
-                        <small>slide decks</small>
-		            </div>
-				</section>
+<!--THE END --> 
+                 <section>
+                    <section>
+                        <h1>Merci</h1>
+                    </section>
+			        <section>
+		                <h2>Play at home</h2>
+		                <div class="inline">
+                            <img src="img/qrcodes/demo.png" alt="http://github.com/krampstudio/node-htop" title="github.com/krampstudio/node-htop" class="border" /><br />
+                            <small>demo source</small>
+		                </div>
+		                <div class="inline sep"></div>
+		                <div class="inline">
+                            <img src="img/qrcodes/slides.png" alt="http://github.com/krampstudio/node-grunt-overview-presentation" title="github.com/github.com/krampstudio/node-grunt-overview-presentation" class="border" /><br />
+                            <small>slide decks</small>
+		                </div>
+                    </section>
+                </section>
 
 			</div>
 

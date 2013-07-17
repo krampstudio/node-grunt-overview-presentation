@@ -1,11 +1,14 @@
 .reveal h1 {
-    font-size: 3em;
-}
-.reveal h2 {
     font-size: 2em;
 }
-.reveal h3 {
+.reveal h2 {
     font-size: 1.5em;
+    padding-bottom: .5em;
+    margin-bottom: .5em;
+    border-bottom: solid 1px #ccc;
+}
+.reveal h3 {
+    font-size: 1.2em;
 }
 .reveal h4 {
     font-size: 1em;
@@ -13,22 +16,44 @@
 .reveal blockquote {
     width:100%;
 }
+
 .reveal table {
     border-collapse: collapse;
+    margin:auto;
 }
 .reveal table tr td{
     border: solid 1px #ccc;
    font-weight:normal;
    font-size: .7em;
-   padding:.2em;
+   padding:.1em .2em;
 }
 .reveal table thead td{
     background-color:#444;
+    color:#fff;
 }
 .reveal table tfoot td{
     font-size: .5em;
     text-align:center;
 }
-.reveal .no-border-img img{
+.reveal section img{
     border: none;
+}
+.reveal section img.border{
+    border: 4px solid black;
+}
+.reveal section .inline{
+    display:inline-block;
+}
+.reveal section .sep{
+    width:4em;
+}
+.reveal section ul li{
+    list-style-type: none;
+    
+}
+.reveal section ul li:before{
+    content:'- ';
+}
+.reveal section{
+    color: #222;
 }
