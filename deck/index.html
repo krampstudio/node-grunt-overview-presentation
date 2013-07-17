@@ -40,7 +40,7 @@
 <!-- COVER -->
 			    <section>
 				    <h1>JavaScript as a Platform</h1>
-				    <h3>Node.js, NPM and Grunt</h3>
+				    <strong>Node.js, NPM and Grunt</strong>
 			    </section>
 
 
@@ -171,7 +171,7 @@
                         </ol>
                     </section>
                     <section>
-                    	<h1>WTF is node.js ?</h1>
+                    	<h2>WTF is node.js ?</h2>
                     	<blockquote class="fragment">The illegitimate child of Google and Netscape !</blockquote>
                     </section>
                     <section>
@@ -358,11 +358,11 @@
                         <small><a href="http://nodejs.org/api/" target="_blank">nodejs.org/api</a></small>
 					</section>
 					<section>
-                        <h2>JavaScript (ES5) file import ?</h2>
+                        <h3>JavaScript (ES5) file import ?</h3>
                         <img src="img/desert.jpg" alt="desert" class="fragment"/>
 					</section>
 					<section>
-                        <h2><img src="img/commonjs.png" alt="CommonJs" width="35%"/></h2>
+                        <h3><img src="img/commonjs.png" alt="CommonJs" width="35%"/></h3>
                         <p>Modules</p>
                         <pre><code data-trim contenteditable class="javascript">
 module.exports = {
@@ -389,7 +389,7 @@ var fs = require('fs');
                         <blockquote>Discovering the patterns</blockquote>
                      </section>
                      <section>
-                        <h2>Required Hello Node.js world</h2>
+                        <h3>Required Hello Node.js world</h3>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
 var http = require("http");
 
@@ -406,7 +406,7 @@ $ node hello_node_world.js
 					    </code></pre>
                      </section>
                      <section data-state="soothe">
-                        <h2>Demo : <a href="https://github.com/krampstudio/node-htop" target="_blank">node-htop</a></h2>
+                        <h3>Demo : <a href="https://github.com/krampstudio/node-htop" target="_blank">node-htop</a></h3>
                         <img src="img/demo/express.png" alt="express" />
                         <img src="img/demo/socketio.png" alt="socketio" />
                         <img src="img/demo/lo-dash.png" alt="lo-dash" /><br />
@@ -415,15 +415,15 @@ $ node hello_node_world.js
                         <img src="img/demo/jquery.png" alt="jquery" />
                     </section>
                     <section data-state="soothe">
-                        <h3>Polling system stats</h3>
+                        <h4>Polling system stats</h4>
                         <img src="img/statpoller.png" alt="StatPoller" />
                     </section>
                     <section data-state="soothe">
-                        <h3>Real time</h3>
+                        <h4>Real time</h4>
                         <img src="img/socket.png" alt="socket" />
                     </section>
                      <section>
-                        <h2>Callbacks, Errorbacks</h2>
+                        <h3>Callbacks, Errorbacks</h3>
                         <pre class="fragment"><code data-trim contenteditable class="bash">
 function async(data, callback) {
     if (!data) {
@@ -440,8 +440,8 @@ async({data: 'test'}, function(err, valid){
                         </code></pre>
                         <small>demo:lib/poller/mem.js#32</small>
                      </section>
-                     <section>
-                     	<h2>Callback tree</h2>
+                     <section data-state="alert">
+                     	<h3>Callback tree</h3>
                      	<pre class="fragment"><code data-trim contenteditable class="javascript">
 http.createServer(function processRequest(request, response){
     fs.exists("/tmp/test", function(exists){
@@ -459,8 +459,8 @@ http.createServer(function processRequest(request, response){
 						 </code></pre>
                         <small>demo:lib/poller/mem.js#32</small>
                      </section>
-                     <section>
-                        <h2>Async management</h2>
+                     <section data-state="soothe">
+                        <h3>Async management</h3>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
 var async = require('async');
 var fs = require('fs');
@@ -485,8 +485,8 @@ async.series([f1, f2], function(err, results){
                         </code></pre>
                         <small>demo:lib/statpoller.js#124</small>
                      </section>
-                     <section>
-                        <h2>Futures and promises</h2>
+                     <section data-state="soothe">
+                        <h3>Futures and promises</h3>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
 var q = require('q'),
 	fs = require('fs');                     
@@ -502,7 +502,7 @@ readFile('test.txt').then(function (data) {
                         </code></pre>
                      </section>
                      <section>
-                        <h2>Events</h2>
+                        <h3>Events</h3>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
 var events = require('events');
 var Test = function(){
@@ -524,7 +524,7 @@ myTest.start();
                         <small>demo:lib/statpoller.js#1</small>
                      </section>
                      <section>
-                        <h2>Middleware</h2>
+                        <h3>Middleware</h3>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
 var app = {
     stack : [],
@@ -564,7 +564,7 @@ app.handle('middleware');
                         </code></pre>
                      </section> 
                      <section>
-                        <h3>Connect : HTTP middlewares</h3>
+                        <h4>Connect : HTTP middlewares</h4>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
 var app = connect()
   .use(connect.logger('dev'))
@@ -577,7 +577,7 @@ var app = connect()
                         <small>demo:app.js#20</small>
                      </section>
                      <section>
-                        <h2>Errors</h2>
+                        <h3>Errors</h3>
                             <pre class="fragment"><code data-trim contenteditable class="javascript">
 try {
     //something that crash
@@ -682,7 +682,7 @@ if (cluster.isMaster) {
                         </aside>
                     </section>
                     <section>
-                    	<h3>Module Metas</h3>
+                    	<h2>Module Metas</h2>
                         <pre>package.json</pre>
                         <pre class="fragment"><code data-trim contenteditable class="javascript">
 {
@@ -724,11 +724,11 @@ $ npm publish
 					    </code></pre>
                     </section>
                     <section>
-						<h3>Scopes</h3>
+						<h2>Scopes</h2>
 						<pre class="fragment">global -&gt; user -&gt; project</pre>
                     </section>
                     <section>
-                        <h3>Transitive dependencies</h3>
+                        <h2>Transitive dependencies</h2>
                         <pre>
 A-0.1 -> B-0.1, C-0.1
 B-01 -> C-0.2
@@ -762,7 +762,7 @@ A-0.1
                 		<h1>Node.js is fun but...</h1>
                 	</section>
                 	<section> 
-                		<h3>Defects</h3>
+                		<h2>Defects</h2>
                 		<ul>
                 			<li class="fragment grow">Young project</li>
                 			<li class="fragment grow">Libraries hell</li>
@@ -792,17 +792,17 @@ A-0.1
                 
 <!-- GRUNT -->
                 <section>
-                	<section class="no-border-img">
+                	<section>
                 		<h1><img src="img/grunt_logo.png" alt="grunt"/></h1>
                 		<strong>Grunt, the task runner</strong>
                 	</section>
                 	<section>
                 		<h2>Automate your projects</h2>
                 		<ul>
-                			<li>Task based</li>
-                			<li>By configuration <code>Gruntfile.js</code></li>
-                			<li>NPM friendly</li>
-                			<li>Extensible by nature</li>
+                			<li class="fragment">Task based</li>
+                			<li class="fragment">By configuration <code>Gruntfile.js</code></li>
+                			<li class="fragment">NPM friendly</li>
+                			<li class="fragment">Extensible by nature</li>
                 		</ul>
                 	</section>
                 	<section>
